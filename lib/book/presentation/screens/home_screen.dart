@@ -1,5 +1,7 @@
 import 'package:booky/book/presentation/controller/book_cubit.dart';
+import 'package:booky/book/presentation/screens/chapters_screen.dart';
 import 'package:booky/book/presentation/widgets/book_widget.dart';
+import 'package:booky/core/methods/navigate_to.dart';
 import 'package:booky/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +32,17 @@ class HomeScreen extends StatelessWidget {
               childAspectRatio: 1 / 1.3,
               children: List.generate(
                 bookCubit.booksList.length,
-                (index) => BookWidget(book: bookCubit.booksList[index]),
+                (index) => BookWidget(
+                  book: bookCubit.booksList[index],
+                  onTap: () {
+                    navigateTo(
+                      context,
+                      ChaptersScreen(
+                        bookId: bookCubit.booksList[index].bookId,
+                      ),
+                    );
+                  },
+                ),
               ),
             );
           }

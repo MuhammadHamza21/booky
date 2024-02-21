@@ -37,7 +37,7 @@ dependencies:
   flutter_bloc: ^8.1.4
   flutter_hooks: ^0.20.5
   flutter_screenutil: ^5.9.0
-  fluttertoast: ^8.2.4
+  # fluttertoast: ^8.2.4
   get_it: ^7.6.7
   shared_preferences: ^2.2.2
   simple_html_css: ^4.0.0

@@ -5,4 +5,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class BaseBookRepository {
   Future<Either<Failure, List<Book>>> getBooks(NoParams params);
+  Future<Either<Failure, List<Book>>> getChapters(NoParams params);
 }

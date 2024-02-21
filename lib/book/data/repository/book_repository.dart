@@ -17,4 +17,10 @@ class BookRepository extends BaseBookRepository {
     var result = await baseBookRemoteDatasource.getBooks();
     return Right(result);
   }
+
+  @override
+  Future<Either<Failure, List<Book>>> getChapters(NoParams params) async {
+    var result = await baseBookRemoteDatasource.getChapters();
+    return Right(result);
+  }
 }
