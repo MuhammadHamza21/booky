@@ -1,0 +1,14 @@
+{
+    "client_id": "d6b24623-6a85-418d-8390-13fd69b81130",
+    "authorization_user_agent": "DEFAULT",
+    "redirect_uri": "msauth://com.example.booky/64ZBb0dttVkuxwSWKh3o8eyjnMY%3D",
+    "authorities": [
+        {
+            "type": "AAD",
+            "audience": {
+                "type": "AzureADMyOrg",
+                "tenant_id": "fba2ab1c-6438-4673-afd5-42cf22b1a69d"
+            }
+        }
+    ]
+}

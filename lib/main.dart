@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:booky/authentication/presentation/screens/microsoft_login_scree.dart';
 import 'package:booky/book/presentation/controller/book_cubit.dart';
-import 'package:booky/book/presentation/screens/home_screen.dart';
 import 'package:booky/core/services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,10 +28,11 @@ class _MyAppState extends State<MyApp> {
         providers: [
           BlocProvider(create: (context) => sl<BookCubit>()..getBooks()),
         ],
-        child: const MaterialApp(
+        child: MaterialApp(
           title: 'Material App',
           debugShowCheckedModeBanner: false,
-          home: HomeScreen(),
+          home: const MicrosoftLoginScreen(),
+          navigatorKey: navigatorKey,
         ),
       ),
     );

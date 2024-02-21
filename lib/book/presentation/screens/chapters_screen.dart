@@ -7,9 +7,8 @@ import 'package:booky/book/presentation/screens/book_content_screen.dart';
 import 'package:booky/book/presentation/widgets/book_widget.dart';
 import 'package:booky/core/methods/navigate_to.dart';
 import 'package:booky/core/utils/enums.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ChaptersScreen extends HookWidget {
+class ChaptersScreen extends StatefulWidget {
   const ChaptersScreen({
     Key? key,
     required this.bookId,
@@ -17,13 +16,18 @@ class ChaptersScreen extends HookWidget {
   final String bookId;
 
   @override
+  State<ChaptersScreen> createState() => _ChaptersScreenState();
+}
+
+class _ChaptersScreenState extends State<ChaptersScreen> {
+  @override
+  void initState() {
+    BookCubit.get(context).getChapters();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    useEffect(
-      () => () {
-        BookCubit.get(context).getChapters();
-      },
-      [],
-    );
     return Scaffold(
       appBar: AppBar(),
       body: BlocBuilder<BookCubit, BookState>(

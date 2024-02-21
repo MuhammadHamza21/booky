@@ -33,17 +33,6 @@ class _BookContentScreenState extends State<BookContentScreen> {
           if (offsets[x].highlightedText == highlightedText) {
             offsets.removeAt(x);
           }
-          // if (offsets[x].highlightedText.contains(highlightedText)) {
-          //   Fluttertoast.showToast(
-          //     msg: "You can't highlight already highlighted words bug",
-          //     toastLength: Toast.LENGTH_SHORT,
-          //     gravity: ToastGravity.BOTTOM,
-          //     timeInSecForIosWeb: 1,
-          //     backgroundColor: Colors.black87,
-          //     textColor: Colors.white,
-          //     fontSize: 16.0,
-          //   );
-          // }
         }
         offsets.add(
           HighlightedList(
@@ -62,84 +51,87 @@ class _BookContentScreenState extends State<BookContentScreen> {
       appBar: AppBar(
         title: const Text('Material App Bar'),
       ),
-      body: Center(
-        child: SelectableText.rich(
-          HTML.toTextSpan(
-            context,
-            checker(),
-            defaultTextStyle: Theme.of(context).textTheme.bodyMedium,
-            overrideStyle: <String, TextStyle>{
-              'body': const TextStyle(fontSize: 16),
-              'p': const TextStyle(
-                fontSize: 17,
-              ),
-              'a': const TextStyle(
-                wordSpacing: 5,
-                color: Colors.black,
-                decoration: TextDecoration.none,
-              ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Center(
+          child: SelectableText.rich(
+            HTML.toTextSpan(
+              context,
+              checker(),
+              defaultTextStyle: Theme.of(context).textTheme.bodyMedium,
+              overrideStyle: <String, TextStyle>{
+                'body': const TextStyle(fontSize: 16),
+                'p': const TextStyle(
+                  fontSize: 17,
+                ),
+                'a': const TextStyle(
+                  wordSpacing: 5,
+                  color: Colors.black,
+                  decoration: TextDecoration.none,
+                ),
+              },
+            ),
+            onSelectionChanged: (selection, cause) {
+              setState(() {
+                highlightedText =
+                    summary.substring(selection.start, selection.end);
+              });
+            },
+            contextMenuBuilder: (context, editableTextState) {
+              return MyContextMenu(
+                anchor: editableTextState.contextMenuAnchors.secondaryAnchor!,
+                children: [
+                  ToolBarItem(
+                    onTap: () {
+                      highlightText("FFFFFF");
+                    },
+                    color: 0xFFFFFF,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  ToolBarItem(
+                    onTap: () {
+                      highlightText("B6B725");
+                    },
+                    color: 0xFFB6B725,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  ToolBarItem(
+                    onTap: () {
+                      highlightText("f48989");
+                    },
+                    color: 0xFFf48989,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  ToolBarItem(
+                    onTap: () {
+                      highlightText("a1e0d9");
+                    },
+                    color: 0xFFa1e0d9,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Clipboard.setData(ClipboardData(text: highlightedText));
+                      // setState(() {
+                      //   isSelected = false;
+                      // });
+                    },
+                    child: const Icon(
+                      Icons.copy,
+                    ),
+                  ),
+                ],
+              );
             },
           ),
-          onSelectionChanged: (selection, cause) {
-            setState(() {
-              highlightedText =
-                  summary.substring(selection.start, selection.end);
-            });
-          },
-          contextMenuBuilder: (context, editableTextState) {
-            return MyContextMenu(
-              anchor: editableTextState.contextMenuAnchors.secondaryAnchor!,
-              children: [
-                ToolBarItem(
-                  onTap: () {
-                    highlightText("FFFFFF");
-                  },
-                  color: 0xFFFFFF,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ToolBarItem(
-                  onTap: () {
-                    highlightText("B6B725");
-                  },
-                  color: 0xFFB6B725,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ToolBarItem(
-                  onTap: () {
-                    highlightText("f48989");
-                  },
-                  color: 0xFFf48989,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ToolBarItem(
-                  onTap: () {
-                    highlightText("a1e0d9");
-                  },
-                  color: 0xFFa1e0d9,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Clipboard.setData(ClipboardData(text: highlightedText));
-                    // setState(() {
-                    //   isSelected = false;
-                    // });
-                  },
-                  child: const Icon(
-                    Icons.copy,
-                  ),
-                ),
-              ],
-            );
-          },
         ),
       ),
     );
